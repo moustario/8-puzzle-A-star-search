@@ -10,6 +10,7 @@ fringes :
 	[Node('/(2, 2)/(1, 2)', expanded=False, state=[['3', '1', '2'], ['4', '7', ' '], ['6', '8', '5']]),
 	Node('/(2, 2)/(2, 1)', expanded=False, state=[['3', '1', '2'], ['4', '7', '5'], ['6', ' ', '8']])]
 
+Generated 2 states so far.
 End of turn 1
 -----
 3 | 1 | 2
@@ -27,6 +28,7 @@ fringes :
 	Node('/(2, 2)/(2, 1)/(1, 1)', expanded=False, f=5, g=2, h=3, state=[['3', '1', '2'], ['4', ' ', '5'], ['6', '7', '8']]),
 	Node('/(2, 2)/(2, 1)/(2, 0)', expanded=False, f=7, g=2, h=5, state=[['3', '1', '2'], ['4', '7', '5'], [' ', '6', '8']])]
 
+Generated 4 states so far.
 End of turn 2
 -----
 3 | 1 | 2
@@ -51,6 +53,7 @@ fringes :
 	Node('/(2, 2)/(2, 1)/(1, 1)/(1, 2)', expanded=False, f=7, g=3, h=4, state=[['3', '1', '2'], ['4', '5', ' '], ['6', '7', '8']]),
 	Node('/(2, 2)/(2, 1)/(2, 0)', expanded=False, f=7, g=2, h=5, state=[['3', '1', '2'], ['4', '7', '5'], [' ', '6', '8']])]
 
+Generated 8 states so far.
 End of turn 3
 -----
 3 | 1 | 2
@@ -78,6 +81,7 @@ fringes :
 	Node('/(2, 2)/(2, 1)/(1, 1)/(1, 2)', expanded=False, f=7, g=3, h=4, state=[['3', '1', '2'], ['4', '5', ' '], ['6', '7', '8']]),
 	Node('/(2, 2)/(2, 1)/(2, 0)', expanded=False, f=7, g=2, h=5, state=[['3', '1', '2'], ['4', '7', '5'], [' ', '6', '8']])]
 
+Generated 10 states so far.
 End of turn 4
 -----
   | 1 | 2
@@ -106,6 +110,7 @@ fringes :
 	Node('/(2, 2)/(2, 1)/(1, 1)/(1, 2)', expanded=False, f=7, g=3, h=4, state=[['3', '1', '2'], ['4', '5', ' '], ['6', '7', '8']]),
 	Node('/(2, 2)/(2, 1)/(2, 0)', expanded=False, f=7, g=2, h=5, state=[['3', '1', '2'], ['4', '7', '5'], [' ', '6', '8']])]
 
+Generated 11 states so far.
 End of turn 5
 -----
-['left', 'up', 'left', 'up']
+['left', 'up', 'left', 'up']Generated 11 states.Execution time since init : 0.008013248443603516 seconds.

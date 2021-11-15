@@ -1,5 +1,6 @@
 from anytree import Node, RenderTree, PreOrderIter, AsciiStyle
 import copy
+import time
 
 tree = None
 goal_state = [
@@ -23,17 +24,26 @@ direction_dir = {
     (-1, 0): 'up'
 }
 solution = list()
+state_generated = 0
 
 
 def main():
-    global fringe, tree, void, puzzle, turn
+    global fringe, tree, void, puzzle, turn, state_generated
     init()
     count = 0
 
+    start = time.time()
     while(True):
         # if no fringe to expand return failure
         if(len(fringe) == 0 or count == 60):
-            print(f"no solution found after {count} turns")
+            print(
+                f"no solution found after {count} turns with {state_generated} states generated.")
+            end_fail = time.time()
+            print(f"Execution time since init : {end_fail-start} seconds.")
+            with open(game_name+".log", 'a') as file:
+                file.write(f'Generated {state_generated} states.')
+                file.write(
+                    f'Execution time since init : {end_fail-start} seconds.')
             break
 
         turn = turn + 1
@@ -67,11 +77,17 @@ def main():
         dump_state()
 
         if(goal_state == puzzle):
-            print(f"solution found after {count} turns")
+            end_success = time.time()
+            print(
+                f"solution found after {count} turns with {state_generated} states generated.")
             find_path(choosen_fringe)
             print(str(solution))
+            print(f"Execution time since init : {end_success-start} seconds.")
             with open(game_name+".log", 'a') as file:
                 file.write(str(solution))
+                file.write(f'Generated {state_generated} states.')
+                file.write(
+                    f'Execution time since init : {end_success-start} seconds.')
             break
 
 
@@ -99,7 +115,7 @@ def find_path_rec(node):
 
 
 def update_tree(choosen_fringe):
-    global void
+    global void, state_generated
 
     # going through adjacent spot
     adjacents = [(void[0]-1, void[1]), (void[0], void[1]-1),
@@ -122,6 +138,7 @@ def update_tree(choosen_fringe):
         node = Node(f"({coord[0]}, {coord[1]})",
                     parent=choosen_fringe, expanded=False, state=list(simulated_puzzle))
         existing_states.append(copy.deepcopy(simulated_puzzle))
+        state_generated = state_generated + 1
 
 
 def update_fringe():
@@ -188,7 +205,7 @@ def move_void(puzzle_to_change, void_coord, move_coord):
 def dump_state(erase_file=False):
     """Log current state in the log file, this include the puzzle, the tree and fringes.
     """
-    global fringe, tree, puzzle
+    global fringe, tree, puzzle, state_generated
 
     mode = 'w' if erase_file else 'a'
     with open(game_name+".log", mode) as file:
@@ -201,6 +218,7 @@ def dump_state(erase_file=False):
         file.write(inner_separator)
         file.write("fringes :\n\t" +
                    ',\n\tNode'.join(str(fringe).split(', Node')) + "\n")
+        file.write(f'\nGenerated {state_generated} states so far.')
         file.write("\nEnd of turn "+str(turn)+"\n")
         file.write(turn_separator)
 
@@ -225,7 +243,7 @@ def init_puzzle():
 
 
 def init_tree():
-    global void, tree, puzzle
+    global void, tree, puzzle, state_generated
 
     # creating root node
     tree = Node(f"({void[0]}, {void[1]})", expanded=True,
@@ -249,6 +267,7 @@ def init_tree():
             copy.deepcopy(tree.state), void_coord, coord)
         node = Node(f"({coord[0]}, {coord[1]})", parent=tree,
                     expanded=False, state=copy.deepcopy(simulated_puzzle))
+        state_generated = state_generated + 1
 
 
 def init_fringe():

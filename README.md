@@ -53,6 +53,10 @@ It follows this pattern
         3. Display the solution on the terminal and the log file
         2. End script 
 
+### Tree structure
+
+The tree structure is implemented through the anytree library
+
 ## Result of the two prescribed runs
 
 You can find result of both runs in the `.log` files.
