@@ -35,7 +35,7 @@ def main():
     start = time.time()
     while(True):
         # if no fringe to expand return failure
-        if(len(fringe) == 0 or count == 60):
+        if(len(fringe) == 0):
             print(
                 f"no solution found after {count} turns with {state_generated} states generated.")
             end_fail = time.time()
