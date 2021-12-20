@@ -1,7 +1,6 @@
 # Puzzle
 
 Solving 8-puzzle using A* search
-by Antoine Muresan
 
 ## Run
 
